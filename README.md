@@ -42,7 +42,11 @@ Below is a quick breakdown of the first packet:
    ![image](https://github.com/user-attachments/assets/18be0aa0-fe45-4b07-b60f-a005b8323f1c)
 4. It also listed information about IP packet fields, such as TOS, TTL, and other detailed information I requested using the <b>-v</b> option.
     ![image](https://github.com/user-attachments/assets/d1c7dcd3-e6f4-4e9a-a99b-039b3188a55f)
-5. 
+5. The next section showed the systems that communicated with each other. tcpdump converted the IP addresses into names, which included the port number as a suffix.
+   ![image](https://github.com/user-attachments/assets/3e364d6a-ce00-44c0-9865-c6fa7cf22578)
+6. The remaining part of the packet specified its TCP packet header data. This included TCP flags (P for pushing out data), checksum value ( for detecting errors), and packet length.
+   ![image](https://github.com/user-attachments/assets/a5e9418f-b3c8-4f61-a1ea-46647477ff38)
+
 ## Capturing Network Traffic
 
 For the next task, I needed .
