@@ -40,20 +40,42 @@ Below is a quick breakdown of the first packet:
 2. On the next line was the packet's timestamp and protocol type
    
    ![image](https://github.com/user-attachments/assets/18be0aa0-fe45-4b07-b60f-a005b8323f1c)
-4. It also listed information about IP packet fields, such as TOS, TTL, and other detailed information I requested using the <b>-v</b> option.
+4. It also listed information about IP packet fields, such as TOS, TTL, and other detailed information I requested using the <b>-v</b> verbose option.
     ![image](https://github.com/user-attachments/assets/d1c7dcd3-e6f4-4e9a-a99b-039b3188a55f)
 5. The next section showed the systems that communicated with each other. tcpdump converted the IP addresses into names, which included the port number as a suffix.
    ![image](https://github.com/user-attachments/assets/3e364d6a-ce00-44c0-9865-c6fa7cf22578)
 6. The remaining part of the packet specified its TCP packet header data. This included TCP flags (P for pushing out data), checksum value ( for detecting errors), and packet length.
    ![image](https://github.com/user-attachments/assets/a5e9418f-b3c8-4f61-a1ea-46647477ff38)
 
-## Capturing Network Traffic
+### Capturing Network Traffic
 
-For the next task, I needed .
+For this task, I needed to save captured network data to a capture file. This time, I wanted to save a small sample of HTTP(TCP Port 80) traffic only. I used the following command to capture packet data into a file named <b>capture.pcap</b>:
+![image](https://github.com/user-attachments/assets/55a7174d-91cb-4fcb-a593-dbc04ba577fc)
 
-![image](https://github.com/user-attachments/assets/5caee54b-8d4c-43fa-8ce5-ebe258ca02d7)
-![image](https://github.com/user-attachments/assets/e8090d6f-0642-4d29-b5be-df3fba64fb87)
-![image](https://github.com/user-attachments/assets/30852226-3925-4604-8bc1-95437c847d68)
+This command ran tcpdump in the background with the following options:
+- <b>-i eth0</b>: captured data from the Ethernet interface.
+- <b>-nn</b>: prevented tcpdump from resolving IP addresses to ports/names. This is the most secure practice, as omitting it may alert malicious actors during investigations.
+- <b>-c9</b>: captured nine packets of data before stopping.
+- <b>port 80</b>: filtered only for port 80 traffic (HTTP default port)
+- <b>-w capture.pcap</b>: saved the data to a named file
+- <b>&</b>: instructed the shell to run this command in the background. 
+  
+
+Then, I ran the command <b>curl opensource.google.com </b> to generate some HTTP traffic. I noticed the <b>301 Moved</b>. No further investigation was needed.
+
+![image](https://github.com/user-attachments/assets/63dbe703-ba87-46ff-995a-7cd97a50c118)
+
+To verify that the packet data was captured, I ran the following code:
+
+![image](https://github.com/user-attachments/assets/2de52681-873d-4d3b-be01-73a6c1d6e545)
+The traffic data was successfully saved in <b>capture.pcap</b> as specified in the initial tcpcdump command.
+
+
+### Filtering Captured Packet Data
+My final task was to filter data from the saved packet capture file, <b>capture.pcap</b>. 
+![image](https://github.com/user-attachments/assets/370de4da-3c44-4264-996d-0627e837798c)
+![image](https://github.com/user-attachments/assets/b2111964-c425-4317-9c57-46819c78b1bd)
 
 
 
+## Summary 
