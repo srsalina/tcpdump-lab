@@ -79,3 +79,5 @@ My final task was to filter data from the saved packet capture file, <b>capture.
 
 
 ## Summary 
+In this project, I demonstrated how to use tcpdump to capture and analyze network traffic from a Linux virtual machine. I began by identifying available network interfaces and choosing the Ethernet interface (eth0) for packet capture. I then inspected live traffic, focusing on detailed packet data including TOS, TTL, and protocol types. After capturing a sample of HTTP traffic and saving it to a file, I verified the capture and filtered the data for analysis. This project provided practical experience in network traffic analysis and the use of tcpdump for security investigations.
+
